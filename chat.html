@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hush.io - Private Chat</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="chat.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🤫</text></svg>">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-header">
+            <div class="room-info">
+                <span class="room-icon">🤫</span>
+                <div class="room-details">
+                    <div class="room-name" id="roomName">Loading...</div>
+                    <div class="room-code" id="roomCode">Code: ...</div>
+                </div>
+            </div>
+            <div class="chat-controls">
+                <div class="timer-display" id="timerDisplay">60s</div>
+                <button class="settings-btn" onclick="toggleSettings()">⚙️</button>
+            </div>
+        </div>
+
+        <div class="settings-panel" id="settingsPanel">
+            <div class="setting-item">
+                <label>Message Timer (Room Setting):</label>
+                <div class="timer-controls">
+                    <button class="timer-btn" data-time="15">15s</button>
+                    <button class="timer-btn" data-time="30">30s</button>
+                    <button class="timer-btn active" data-time="60">1m</button>
+                    <button class="timer-btn" data-time="300">5m</button>
+                    <button class="timer-btn" data-time="900">15m</button>
+                </div>
+                <div class="timer-info">
+                    <small>⚠️ Timer changes affect all users in the room</small>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Share Room:</label>
+                <div class="share-controls">
+                    <input type="text" id="shareCode" readonly>
+                    <button onclick="copyRoomCode()">Copy</button>
+                </div>
+            </div>
+            <div class="setting-item">
+                <label>Admin Controls:</label>
+                <div class="share-controls">
+                    <button id="closeRoomBtn" disabled>Close Room</button>
+                </div>
+                <div class="timer-info"><small>Only the room creator can close the room</small></div>
+            </div>
+            
+        </div>
+
+        <div class="messages-container" id="messagesContainer">
+            <div class="welcome-message">
+                <div class="welcome-icon">👋</div>
+                <div class="welcome-text">
+                    <h3>Welcome to your private chat!</h3>
+                    <p>Messages will disappear after <span id="welcomeTimer">60 seconds</span>.</p>
+                    <p>Share the room code with others to invite them.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="message-input-container">
+            <div class="input-wrapper">
+                <input type="text" id="messageInput" placeholder="Type your message..." maxlength="500">
+                <button id="sendButton" onclick="sendMessage()">
+                    <span class="send-icon">📤</span>
+                </button>
+            </div>
+            <div class="typing-indicators" id="typingIndicators"></div>
+            <div class="input-info">
+                <span class="char-count" id="charCount">0/500</span>
+                <span class="encryption-status">🔒 End-to-end encrypted</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="chat.js"></script>
+</body>
+</html>

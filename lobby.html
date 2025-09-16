@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hush.io - Chat Lobby</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="lobby.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🤫</span>
+                <span class="logo-text">hush.io</span>
+            </div>
+        </div>
+    </nav>
+    <main>
+        <section class="lobby-section">
+            <div class="lobby-container">
+                <div class="lobby-header">
+                    <h2>Chatrooms</h2>
+                    <p class="lobby-subtitle">Join existing rooms or create your own private space</p>
+                </div>
+                
+                <div class="rooms-section">
+                    <div class="section-header">
+                        <h3>Available Rooms</h3>
+                        <div class="room-count" id="roomCount">0 rooms</div>
+                    </div>
+                    <div id="rooms-list" class="rooms-list">
+                        <!-- Rooms will be loaded here -->
+                        <div class="empty-state">
+                            <div class="empty-icon">💬</div>
+                            <h4>No rooms available</h4>
+                            <p>Be the first to create a chatroom!</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="create-room">
+                    <div class="section-header">
+                        <h3>Create New Room</h3>
+                        <div class="create-icon">✨</div>
+                    </div>
+                    <form id="create-room-form">
+                        <div class="form-group">
+                            <label for="room-name">Room Name</label>
+                            <input type="text" id="room-name" placeholder="Enter a memorable name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="room-password">Password (Optional)</label>
+                            <input type="password" id="room-password" placeholder="Leave empty for public room">
+                        </div>
+                        <div class="form-group">
+                            <label for="room-limit">Max Users (Optional)</label>
+                            <input type="number" id="room-limit" placeholder="Default: unlimited" min="1" max="1000">
+                        </div>
+                        <button type="submit">
+                            <span class="button-icon">🚀</span>
+                            Create Room
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script src="lobby.js"></script>
+</body>
+</html> 

@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hush.io - Private Ephemeral Messaging</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🤫</text></svg>">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🤫</span>
+                <span class="logo-text">hush.io</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home" class="hero-section">
+            <div class="hero-container">
+                <div class="hero-content">
+                    <div class="hero-logo">
+                        <span class="hero-icon">🤫</span>
+                        <h1 class="hero-title">hush.io</h1>
+                    </div>
+                    <p class="hero-subtitle">Private. Secure. Ephemeral.</p>
+                    <p class="hero-description">
+                        Experience truly private messaging with disappearing messages. 
+                        Create secure chatrooms, set custom message intervals, and chat without leaving a trace.
+                    </p>
+                    <button class="cta-button" onclick="window.location.href='lobby.html'">
+                        Get Started
+                        <span class="button-arrow">→</span>
+                    </button>
+                </div>
+                <div class="hero-visual">
+                    <div class="chat-preview">
+                        <div class="preview-header">
+                            <div class="preview-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <span class="preview-title">Private Chat</span>
+                        </div>
+                        <div class="preview-messages">
+                            <div class="preview-message fade-in">
+                                <div class="message-bubble">Hello! This message will disappear in 30s</div>
+                            </div>
+                            <div class="preview-message fade-in delay-1">
+                                <div class="message-bubble received">Perfect for private conversations!</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About hush.io</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p class="lead">
+                            hush.io revolutionizes private communication with ephemeral messaging that prioritizes your privacy above all else.
+                        </p>
+                        <div class="about-features">
+                            <div class="feature-item">
+                                <div class="feature-icon">🔒</div>
+                                <div class="feature-text">
+                                    <h3>No Sign-up Required</h3>
+                                    <p>Jump right into secure conversations without creating accounts or sharing personal information.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">⏰</div>
+                                <div class="feature-text">
+                                    <h3>Disappearing Messages</h3>
+                                    <p>Set custom time intervals for message deletion. Your conversations vanish without a trace.</p>
+                                </div>
+                            </div>
+                            <div class="feature-item">
+                                <div class="feature-icon">🛡️</div>
+                                <div class="feature-text">
+                                    <h3>Complete Privacy</h3>
+                                    <p>Messages are never stored permanently. Your privacy is guaranteed by design.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="services" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Our Services</h2>
+                <div class="services-grid">
+                    <div class="service-card">
+                        <div class="service-icon">🔐</div>
+                        <h3>Truly Secure</h3>
+                        <p>End-to-end encryption ensures your messages remain private. No backdoors, no data collection, no compromises.</p>
+                        <ul class="service-features">
+                            <li>Client-side encryption</li>
+                            <li>No message logging</li>
+                            <li>Zero data retention</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">👻</div>
+                        <h3>Ephemeral Messaging</h3>
+                        <p>Messages automatically disappear after your chosen time interval. Leave no digital footprint behind.</p>
+                        <ul class="service-features">
+                            <li>Custom deletion timers</li>
+                            <li>Sign-in free access</li>
+                            <li>Instant message removal</li>
+                        </ul>
+                    </div>
+                    <div class="service-card">
+                        <div class="service-icon">🔑</div>
+                        <h3>Password Protected Rooms</h3>
+                        <p>Create private chatrooms with password protection, or public rooms for open conversations.</p>
+                        <ul class="service-features">
+                            <li>Optional password protection</li>
+                            <li>Public or private rooms</li>
+                            <li>Easy room sharing</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="how-it-works" class="section">
+            <div class="container">
+                <h2 class="section-title">How It Works</h2>
+                <div class="how-it-works-content">
+                    <div class="steps-container">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <div class="step-content">
+                                <h3>Create or Join a Room</h3>
+                                <p>Click "Get Started" to create a new chatroom or join an existing one with a room code.</p>
+                                <div class="step-visual">
+                                    <div class="visual-card">
+                                        <div class="card-header">Create Room</div>
+                                        <div class="card-content">
+                                            <div class="input-group">
+                                                <input type="text" placeholder="Room name" readonly>
+                                                <input type="password" placeholder="Password (optional)" readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <div class="step-content">
+                                <h3>Set Message Timer</h3>
+                                <p>Choose how long messages should remain visible before automatically disappearing.</p>
+                                <div class="step-visual">
+                                    <div class="visual-card">
+                                        <div class="card-header">Message Settings</div>
+                                        <div class="card-content">
+                                            <div class="timer-options">
+                                                <span class="timer-option">30s</span>
+                                                <span class="timer-option active">1m</span>
+                                                <span class="timer-option">5m</span>
+                                                <span class="timer-option">15m</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <div class="step-content">
+                                <h3>Start Chatting</h3>
+                                <p>Send messages that automatically disappear after the set interval. Your conversation stays private.</p>
+                                <div class="step-visual">
+                                    <div class="visual-card chat-demo">
+                                        <div class="card-header">Private Chat</div>
+                                        <div class="card-content">
+                                            <div class="demo-message">
+                                                <span class="message-text">This message will disappear in 45s</span>
+                                                <span class="countdown">⏰ 0:45</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="workflow-diagram">
+                        <div class="diagram-title">Privacy Protection Workflow</div>
+                        <div class="diagram-flow">
+                            <div class="flow-item">
+                                <div class="flow-icon">📝</div>
+                                <span>Message Sent</span>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">
+                                <div class="flow-icon">🔒</div>
+                                <span>Encrypted</span>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">
+                                <div class="flow-icon">📱</div>
+                                <span>Displayed</span>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">
+                                <div class="flow-icon">⏰</div>
+                                <span>Timer Expires</span>
+                            </div>
+                            <div class="flow-arrow">→</div>
+                            <div class="flow-item">
+                                <div class="flow-icon">🗑️</div>
+                                <span>Deleted Forever</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="section bg-light">
+            <div class="container">
+                <h2 class="section-title">Contact Us</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Get in Touch</h3>
+                        <p class="contact-description">
+                            Have questions about hush.io? We're here to help. Reach out to us for support, feedback, or partnership inquiries.
+                        </p>
+                        <div class="contact-methods">
+                            <div class="contact-method">
+                                <div class="method-icon">📧</div>
+                                <div class="method-details">
+                                    <h4>Email</h4>
+                                    <p>hello@hush.io</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">💬</div>
+                                <div class="method-details">
+                                    <h4>Support</h4>
+                                    <p>support@hush.io</p>
+                                </div>
+                            </div>
+                            <div class="contact-method">
+                                <div class="method-icon">🤝</div>
+                                <div class="method-details">
+                                    <h4>Partnerships</h4>
+                                    <p>partners@hush.io</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="contact-form">
+                        <form class="form">
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subject">Subject</label>
+                                <input type="text" id="subject" name="subject" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="submit-btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <span class="logo-icon">🤫</span>
+                    <span class="logo-text">hush.io</span>
+                </div>
+                <p class="footer-text">
+                    Private ephemeral messaging that respects your privacy.
+                </p>
+                <div class="footer-links">
+                    <a href="#privacy">Privacy Policy</a>
+                    <a href="#terms">Terms of Service</a>
+                    <a href="#security">Security</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 hush.io. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

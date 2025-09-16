@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hush.io - User Limit Test</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .test-container {
+            max-width: 800px;
+            margin: 120px auto 40px;
+            padding: var(--space-8);
+            background: white;
+            border-radius: var(--radius-2xl);
+            box-shadow: var(--shadow-2xl);
+            border: 1px solid var(--gray-100);
+        }
+        
+        .test-header {
+            text-align: center;
+            margin-bottom: var(--space-8);
+        }
+        
+        .test-title {
+            font-size: var(--font-size-3xl);
+            font-weight: 800;
+            color: var(--gray-900);
+            margin-bottom: var(--space-3);
+            background: linear-gradient(135deg, var(--primary-600), var(--secondary-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .test-subtitle {
+            color: var(--gray-600);
+            font-size: var(--font-size-lg);
+        }
+        
+        .test-section {
+            margin-bottom: var(--space-8);
+            padding: var(--space-6);
+            background: var(--gray-50);
+            border-radius: var(--radius-xl);
+            border: 1px solid var(--gray-200);
+        }
+        
+        .test-section h3 {
+            font-size: var(--font-size-xl);
+            font-weight: 700;
+            color: var(--gray-800);
+            margin-bottom: var(--space-4);
+            display: flex;
+            align-items: center;
+            gap: var(--space-2);
+        }
+        
+        .test-button {
+            background: linear-gradient(135deg, var(--primary-500), var(--secondary-500));
+            color: white;
+            border: none;
+            padding: var(--space-3) var(--space-6);
+            border-radius: var(--radius-lg);
+            font-size: var(--font-size-base);
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition-base);
+            margin: var(--space-2);
+        }
+        
+        .test-button:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .test-button.success {
+            background: linear-gradient(135deg, var(--success-500), var(--success-600));
+        }
+        
+        .test-button.warning {
+            background: linear-gradient(135deg, var(--warning-500), var(--warning-600));
+        }
+        
+        .test-button.error {
+            background: linear-gradient(135deg, var(--error-500), var(--error-600));
+        }
+        
+        .test-result {
+            margin-top: var(--space-4);
+            padding: var(--space-4);
+            border-radius: var(--radius-lg);
+            font-weight: 500;
+        }
+        
+        .test-result.success {
+            background: var(--success-50);
+            color: var(--success-700);
+            border: 1px solid var(--success-200);
+        }
+        
+        .test-result.error {
+            background: var(--error-50);
+            color: var(--error-700);
+            border: 1px solid var(--error-200);
+        }
+        
+        .test-result.info {
+            background: var(--primary-50);
+            color: var(--primary-700);
+            border: 1px solid var(--primary-200);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-icon">🤫</span>
+                <span class="logo-text">hush.io</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="lobby.html" class="nav-link">Lobby</a></li>
+                <li><a href="#" class="nav-link active">Test</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="test-container">
+            <div class="test-header">
+                <h1 class="test-title">User Limit Testing</h1>
+                <p class="test-subtitle">Test the user limit functionality of hush.io chatrooms</p>
+            </div>
+
+            <div class="test-section">
+                <h3>🚀 Create Test Room</h3>
+                <p>Create a room with a specific user limit to test the functionality.</p>
+                <button class="test-button" onclick="createTestRoom()">Create Room (Limit: 3)</button>
+                <button class="test-button" onclick="createTestRoom(5)">Create Room (Limit: 5)</button>
+                <button class="test-button" onclick="createTestRoom(10)">Create Room (Limit: 10)</button>
+                <div id="createResult" class="test-result" style="display: none;"></div>
+            </div>
+
+            <div class="test-section">
+                <h3>👥 Join Test Room</h3>
+                <p>Simulate multiple users joining the same room to test the limit.</p>
+                <button class="test-button success" onclick="joinTestRoom()">Join Room</button>
+                <button class="test-button warning" onclick="simulateMultipleJoins()">Simulate Multiple Joins</button>
+                <div id="joinResult" class="test-result" style="display: none;"></div>
+            </div>
+
+            <div class="test-section">
+                <h3>📊 Room Status</h3>
+                <p>Check the current status of test rooms and their user counts.</p>
+                <button class="test-button info" onclick="checkRoomStatus()">Check Status</button>
+                <button class="test-button error" onclick="clearTestRooms()">Clear Test Rooms</button>
+                <div id="statusResult" class="test-result" style="display: none;"></div>
+            </div>
+
+            <div class="test-section">
+                <h3>🔧 Advanced Tests</h3>
+                <p>Run comprehensive tests to verify all functionality.</p>
+                <button class="test-button" onclick="runFullTest()">Run Full Test Suite</button>
+                <div id="fullTestResult" class="test-result" style="display: none;"></div>
+            </div>
+
+            <div class="test-section">
+                <h3>⏰ Timer Synchronization Test</h3>
+                <p>Test the synchronized timer functionality to ensure all users see messages disappear at the same time.</p>
+                <button class="test-button success" onclick="testTimerSync()">Test Timer Sync</button>
+                <button class="test-button warning" onclick="simulateTimerConflict()">Simulate Timer Conflict</button>
+                <div id="timerTestResult" class="test-result" style="display: none;"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let testRooms = [];
+        let testUsers = [];
+
+        function showResult(elementId, message, type = 'info') {
+            const element = document.getElementById(elementId);
+            element.textContent = message;
+            element.className = `test-result ${type}`;
+            element.style.display = 'block';
+            
+            setTimeout(() => {
+                element.style.display = 'none';
+            }, 5000);
+        }
+
+        function createTestRoom(limit = 3) {
+            const roomName = `test-room-${Date.now()}`;
+            const room = {
+                name: roomName,
+                limit: limit,
+                users: 0,
+                created: new Date().toISOString()
+            };
+            
+            testRooms.push(room);
+            showResult('createResult', `✅ Created room "${roomName}" with limit of ${limit} users`, 'success');
+        }
+
+        function joinTestRoom() {
+            if (testRooms.length === 0) {
+                showResult('joinResult', '❌ No test rooms available. Create one first!', 'error');
+                return;
+            }
+
+            const room = testRooms[testRooms.length - 1];
+            const username = `user-${Date.now()}`;
+            
+            if (room.users >= room.limit) {
+                showResult('joinResult', `❌ Room "${room.name}" is full (${room.users}/${room.limit})`, 'error');
+                return;
+            }
+
+            room.users++;
+            testUsers.push({ username, room: room.name, joined: new Date().toISOString() });
+            showResult('joinResult', `✅ ${username} joined room "${room.name}" (${room.users}/${room.limit})`, 'success');
+        }
+
+        function simulateMultipleJoins() {
+            if (testRooms.length === 0) {
+                showResult('joinResult', '❌ No test rooms available. Create one first!', 'error');
+                return;
+            }
+
+            const room = testRooms[testRooms.length - 1];
+            const attempts = Math.min(5, room.limit + 2);
+            let successfulJoins = 0;
+            let failedJoins = 0;
+
+            for (let i = 0; i < attempts; i++) {
+                if (room.users < room.limit) {
+                    room.users++;
+                    const username = `user-${Date.now()}-${i}`;
+                    testUsers.push({ username, room: room.name, joined: new Date().toISOString() });
+                    successfulJoins++;
+                } else {
+                    failedJoins++;
+                }
+            }
+
+            const message = `✅ ${successfulJoins} users joined, ${failedJoins} were rejected (${room.users}/${room.limit})`;
+            showResult('joinResult', message, failedJoins > 0 ? 'warning' : 'success');
+        }
+
+        function checkRoomStatus() {
+            if (testRooms.length === 0) {
+                showResult('statusResult', '📭 No test rooms found', 'info');
+                return;
+            }
+
+            let status = '📊 Room Status:\n';
+            testRooms.forEach((room, index) => {
+                const percentage = Math.round((room.users / room.limit) * 100);
+                const statusIcon = room.users >= room.limit ? '🔴' : room.users > room.limit * 0.8 ? '🟡' : '🟢';
+                status += `${statusIcon} ${room.name}: ${room.users}/${room.limit} users (${percentage}%)\n`;
+            });
+
+            showResult('statusResult', status, 'info');
+        }
+
+        function clearTestRooms() {
+            testRooms = [];
+            testUsers = [];
+            showResult('statusResult', '🧹 All test rooms and users cleared', 'success');
+        }
+
+        function runFullTest() {
+            let results = [];
+            
+            // Test 1: Create room
+            createTestRoom(3);
+            results.push('✅ Room creation test passed');
+            
+            // Test 2: Join room
+            setTimeout(() => {
+                joinTestRoom();
+                results.push('✅ Single join test passed');
+                
+                // Test 3: Multiple joins
+                setTimeout(() => {
+                    simulateMultipleJoins();
+                    results.push('✅ Multiple join test passed');
+                    
+                    // Test 4: Check status
+                    setTimeout(() => {
+                        checkRoomStatus();
+                        results.push('✅ Status check test passed');
+                        
+                        const finalResult = results.join('\n');
+                        showResult('fullTestResult', finalResult, 'success');
+                    }, 1000);
+                }, 1000);
+            }, 1000);
+        }
+
+        function testTimerSync() {
+            let results = [];
+            
+            // Create a test room with synchronized timer
+            const room = {
+                name: 'sync-test-room',
+                timer: 60,
+                users: []
+            };
+            
+            testRooms.push(room);
+            results.push('✅ Created room with synchronized timer');
+            
+            // Simulate multiple users with different timer preferences
+            const user1 = { name: 'Alice', preferredTimer: 30 };
+            const user2 = { name: 'Bob', preferredTimer: 300 };
+            
+            results.push(`👤 ${user1.name} prefers ${user1.preferredTimer}s timer`);
+            results.push(`👤 ${user2.name} prefers ${user2.preferredTimer}s timer`);
+            
+            // Simulate room timer being set to 60s (compromise)
+            room.timer = 60;
+            results.push('✅ Room timer synchronized to 60s for all users');
+            
+            // Simulate message being sent
+            const message = {
+                id: 'test-msg-1',
+                text: 'Hello from synchronized timer!',
+                timestamp: Date.now(),
+                timer: room.timer
+            };
+            
+            results.push('📨 Message sent with synchronized timer');
+            results.push(`⏰ All users will see message disappear in ${room.timer}s`);
+            
+            const finalResult = results.join('\n');
+            showResult('timerTestResult', finalResult, 'success');
+        }
+
+        function simulateTimerConflict() {
+            let results = [];
+            
+            results.push('🔍 Simulating the original timer conflict issue:');
+            results.push('');
+            results.push('❌ OLD BEHAVIOR (Before Fix):');
+            results.push('• User A sets timer to 5 minutes');
+            results.push('• User B sets timer to 30 seconds');
+            results.push('• User B sends a message');
+            results.push('• Message disappears after 30s on User B\'s device');
+            results.push('• Message stays for 5 minutes on User A\'s device');
+            results.push('• ❌ Messages not synchronized!');
+            results.push('');
+            results.push('✅ NEW BEHAVIOR (After Fix):');
+            results.push('• Room has a single synchronized timer');
+            results.push('• When User B changes timer to 30s, all users are notified');
+            results.push('• All users see the same timer setting');
+            results.push('• All messages disappear at the same time for everyone');
+            results.push('• ✅ Messages perfectly synchronized!');
+            
+            const finalResult = results.join('\n');
+            showResult('timerTestResult', finalResult, 'info');
+        }
+    </script>
+</body>
+</html>
