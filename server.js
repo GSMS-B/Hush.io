@@ -20,6 +20,9 @@ app.use(express.static(__dirname));
 // In-memory storage
 let rooms = {};
 let messages = {}; // Store messages with their deletion timers
+app.get("/",(req,res)=>{
+  res.sendfile("./lobby.html")
+})
 
 // REST API: Get all rooms
 app.get('/api/rooms', (req, res) => {
