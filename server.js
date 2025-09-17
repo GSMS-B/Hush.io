@@ -1,3 +1,4 @@
+const path = require("path");
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -20,9 +21,11 @@ app.use(express.static(__dirname));
 // In-memory storage
 let rooms = {};
 let messages = {}; // Store messages with their deletion timers
-app.get("/",(req,res)=>{
-  res.sendfile("./lobby.html")
-})
+
+// __dirname works in CommonJS
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "lobby.html"));
+});
 
 // REST API: Get all rooms
 app.get('/api/rooms', (req, res) => {
