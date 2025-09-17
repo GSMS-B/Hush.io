@@ -1,3 +1,6 @@
+
+import path from "path";
+import { fileURLToPath } from "url";
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -20,10 +23,13 @@ app.use(express.static(__dirname));
 // In-memory storage
 let rooms = {};
 let messages = {}; // Store messages with their deletion timers
-app.get("/",(req,res)=>{
-  res.sendfile("./lobby.html")
-})
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "lobby.html"));
+})
 // REST API: Get all rooms
 app.get('/api/rooms', (req, res) => {
   const roomList = Object.keys(rooms).map(room => ({
