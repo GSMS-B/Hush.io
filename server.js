@@ -1,6 +1,4 @@
-
-import path from "path";
-import { fileURLToPath } from "url";
+const path = require("path");
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
@@ -24,12 +22,11 @@ app.use(express.static(__dirname));
 let rooms = {};
 let messages = {}; // Store messages with their deletion timers
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+// __dirname works in CommonJS
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "lobby.html"));
-})
+});
+
 // REST API: Get all rooms
 app.get('/api/rooms', (req, res) => {
   const roomList = Object.keys(rooms).map(room => ({
