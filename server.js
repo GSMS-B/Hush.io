@@ -16,16 +16,15 @@ const io = new Server(server, {
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static(__dirname));
-
 // In-memory storage
 let rooms = {};
 let messages = {}; // Store messages with their deletion timers
 
+app.use(express.static(path.join(__dirname, "public")));
 // __dirname works in CommonJS
 app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "lobby.html"));
-});
+ res.sendFile(path.join(__dirname, "public", "lobby.html"));}
+);
 
 // REST API: Get all rooms
 app.get('/api/rooms', (req, res) => {
