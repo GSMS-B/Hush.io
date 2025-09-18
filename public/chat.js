@@ -28,12 +28,14 @@ function initializeChat() {
         const urlParams = new URLSearchParams(window.location.search);
         const roomName = urlParams.get('room');
         const username = urlParams.get('username');
+        console.log(roomName + " " +username);
+        
         
         if (roomName && username) {
             // We have room info from URL, try to connect
             currentRoom = {
-                name: roomName,
-                username: username,
+                Name: roomName,
+                userName: username,
                 code: generateRoomCode()
             };
             updateRoomDisplay();
@@ -41,7 +43,7 @@ function initializeChat() {
         } else {
             // Create a demo room if no data exists
             currentRoom = {
-                name: 'Demo Room',
+                Name: 'Demo Room',
                 code: generateRoomCode(),
                 password: ''
             };
@@ -55,17 +57,15 @@ function initializeChat() {
 
 function connectToRoom() {
     // Initialize Socket.IO connection
-    const socket = io("https://hush-io.onrender.com",{
-        transports:["websocket","polling"]
-    });
+    const socket = io("https://hush-io.onrender.com");
     
     socket.on('connect', () => {
         console.log('Connected to server');
         
         // Join the room
         socket.emit('joinRoom', {
-            room: currentRoom.name,
-            username: currentRoom.username,
+            room: currentRoom.Name,
+            username: currentRoom.userName,
             password: currentRoom.password || ''
         }, (response) => {
             if (response.success) {
@@ -86,7 +86,7 @@ function connectToRoom() {
         updateTimerDisplay();
         updateWelcomeMessage();
         updateTimerButtons();
-        console.log('Room timer set to:', roomTimer);
+        // console.log('Room timer set to:', roomTimer);
     });
     
     // Handle timer updates from other users
@@ -96,7 +96,7 @@ function connectToRoom() {
         updateWelcomeMessage();
         updateTimerButtons();
         showToast(`Timer updated to ${formatTime(roomTimer)}`);
-        console.log('Timer updated to:', roomTimer);
+        // console.log('Timer updated to:', roomTimer);
     });
     
     // Handle timer errors
@@ -151,7 +151,7 @@ function connectToRoom() {
     
     // Handle user list updates
     socket.on('userList', (users) => {
-        console.log('Users in room:', users);
+        // console.log('Users in room:', users);
         // Show notification when users join/leave
         if (users.length > 1) {
             showToast(`${users.length} users in the room`);
