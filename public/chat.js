@@ -75,7 +75,7 @@ function connectToRoom() {
                 console.error('Failed to join room:', response.error);
                 alert('Failed to join room: ' + response.error);
                 // Redirect back to lobby
-                window.location.href = 'lobby.html';
+                // window.location.href = 'lobby.html';
             }
         });
     });
