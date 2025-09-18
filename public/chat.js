@@ -72,7 +72,7 @@ function connectToRoom() {
                 console.log('Successfully joined room:', currentRoom.name);
                 showToast(`Joined ${currentRoom.name} successfully!`);
             } else {
-                console.log(room + " " +username);
+                console.log(currentRoom.Name + " " +currentRoom.userName);
                 console.error('Failed to join room:', response.error);
                 alert('Failed to join room: ' + response.error);
                 // Redirect back to lobby
