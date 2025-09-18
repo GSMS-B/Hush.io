@@ -55,7 +55,9 @@ function initializeChat() {
 
 function connectToRoom() {
     // Initialize Socket.IO connection
-    const socket = io();
+    const socket = io("https://hush-io.onrender.com",{
+        transports:["websocket","polling"]
+    });
     
     socket.on('connect', () => {
         console.log('Connected to server');
