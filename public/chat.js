@@ -28,9 +28,6 @@ function initializeChat() {
         const urlParams = new URLSearchParams(window.location.search);
         const roomName = urlParams.get('room');
         const username = urlParams.get('username');
-        console.log(roomName + " " +username);
-        
-        
         if (roomName && username) {
             // We have room info from URL, try to connect
             currentRoom = {
@@ -75,6 +72,7 @@ function connectToRoom() {
                 console.log('Successfully joined room:', currentRoom.name);
                 showToast(`Joined ${currentRoom.name} successfully!`);
             } else {
+                console.log(room + " " +username);
                 console.error('Failed to join room:', response.error);
                 alert('Failed to join room: ' + response.error);
                 // Redirect back to lobby
