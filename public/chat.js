@@ -28,58 +28,56 @@ function initializeChat() {
         const urlParams = new URLSearchParams(window.location.search);
         const roomName = urlParams.get('room');
         const username = urlParams.get('username');
+        console.log(roomName + " " + username);
+        
         if (roomName && username) {
             // We have room info from URL, try to connect
             currentRoom = {
-                Name: roomName,
-                userName: username,
-                code: generateRoomCode()
+                name: roomName,
+                username: username,
+                password: generateRoomCode()
             };
+            // console.log(currentRoom);
+            
             updateRoomDisplay();
             connectToRoom();
-        } else {
-            // Create a demo room if no data exists
-            currentRoom = {
-                Name: 'Demo Room',
-                code: generateRoomCode(),
-                password: ''
-            };
-            updateRoomDisplay();
         }
     }
     
     // Set share code
     document.getElementById('shareCode').value = currentRoom.code;
 }
-
 function connectToRoom() {
+    
     // Initialize Socket.IO connection
     const socket = io("https://hush-io.onrender.com",{
         transports: ["websocket", "polling"],
         withCredentials: true
     });
-    
-    socket.on('connect', () => {
+        socket.on('connect', () => {
         console.log('Connected to server');
-        
-        // Join the room
-        socket.emit('joinRoom', {
-            room: currentRoom.Name,
-            username: currentRoom.userName,
-            password: currentRoom.password || ''
-        }, (response) => {
-            if (response.success) {
-                console.log('Successfully joined room:', currentRoom.name);
-                showToast(`Joined ${currentRoom.name} successfully!`);
-            } else {
-                console.log(currentRoom.Name + " " +currentRoom.userName);
-                console.error('Failed to join room:', response.error);
-                alert('Failed to join room: ' + response.error);
-                // Redirect back to lobby
-                // window.location.href = 'lobby.html';
-            }
-        });
+        // console.log("CurrentRoom:", currentRoom);
+
+        if (currentRoom && currentRoom.name && currentRoom.username) {
+            socket.emit('joinRoom', {
+                room: currentRoom.name,
+                username: currentRoom.username,
+                password: currentRoom.password || ''
+            }, (response) => {
+                console.log(response);
+                
+                if (response.success) {
+                    console.log('Successfully joined room:', currentRoom.name);
+                } else {
+                    console.log(currentRoom.name + " " + currentRoom.username);
+                    console.error('Failed to join room:', response.error);
+                }
+            });
+        } else {
+            console.error("❌ currentRoom is not ready yet");
+        }
     });
+
     
     // Handle room timer updates
     socket.on('roomTimer', (data) => {
