@@ -51,7 +51,7 @@ function initializeChat() {
 function connectToRoom() {
     
     // Initialize Socket.IO connection
-    const socket = io("https://hush-io-ten.vercel.app",{
+    const socket = io("https://hush-io.onrender.com",{
         transports: ["websocket", "polling"],
         withCredentials: true
     });
