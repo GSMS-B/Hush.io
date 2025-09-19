@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
 function initializeChat() {
     // Load room data from localStorage
-    const roomData = localStorage.getItem('currentRoom');
+    const roomData = localStorage.getItem('currentRoom');    
     if (roomData) {
         currentRoom = JSON.parse(roomData);
         updateRoomDisplay();
@@ -38,11 +38,12 @@ function initializeChat() {
                 password: generateRoomCode()
             };
             // console.log(currentRoom);
-            
-            updateRoomDisplay();
+            localStorage.setItem('currentRoom', JSON.stringify(currentRoom));
+            // updateRoomDisplay(); 
             connectToRoom();
         }
     }
+
     
     // Set share code
     document.getElementById('shareCode').value = currentRoom.code;
@@ -50,7 +51,7 @@ function initializeChat() {
 function connectToRoom() {
     
     // Initialize Socket.IO connection
-    const socket = io("https://hush-io.onrender.com",{
+    const socket = io("https://hush-io-ten.vercel.app",{
         transports: ["websocket", "polling"],
         withCredentials: true
     });

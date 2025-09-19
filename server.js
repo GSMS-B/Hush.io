@@ -7,11 +7,12 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: 'https://hush-io-ten.vercel.app',
-    credentials: true,
-    methods: ['GET', 'POST']
-  }
+  // cors: {
+  //   origin: 'https://hush-io-ten.vercel.app',
+  //   credentials: true,
+  //   methods: ['GET', 'POST']
+  // },
+  transports: ["websocket", "polling"] 
 });
 
 app.use(cors());
@@ -128,8 +129,9 @@ function scheduleMessageDeletion(roomName, messageId, timer) {
 // Socket.IO events
 io.on('connection', (socket) => {
   socket.on('joinRoom', ({ room, username, password }, callback) => {
+    console.log(rooms)
     if (!rooms[room]) {
-      return callback({ error: 'Room does not exist' });
+      return callback({ error: 'Room does not exist' }); 
     }
     if (rooms[room].closed) {
       return callback({ error: 'Room is closed' });
