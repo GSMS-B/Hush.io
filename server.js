@@ -7,11 +7,11 @@ const cors = require('cors');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  // cors: {
-  //   origin: 'https://hush-io-ten.vercel.app',
-  //   credentials: true,
-  //   methods: ['GET', 'POST']
-  // },
+  cors: {
+    origin: 'https://hush-io-ten.vercel.app',
+    credentials: true,
+    methods: ['GET', 'POST']
+  },
   transports: ["websocket", "polling"] 
 });
 
